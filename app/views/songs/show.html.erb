@@ -1,0 +1,55 @@
+<div class="panel panel-default">
+	<div class="panel-heading">
+	  <strong class="panel-title">Show album</strong>
+	  <div class="clearfix "></div>
+	</div>
+
+
+	<ul class="list-group">
+	  <li class="list-group-item">
+	    <div class='row'>
+	          <div class="col-md-6"><b>Title:</b></div>
+	          <div class="col-md-6"><%= @song.title %></div>
+	        </div>
+	  </li>
+
+	  <li class="list-group-item">
+	    <div class='row'>
+	          <div class="col-md-6"><b>Album:</b></div>
+	          <div class="col-md-6"><%= @artist.name %></div>
+	        </div>
+	  </li>
+	  <li class="list-group-item">
+	    <div class='row'>
+
+	      <div class="col-md-6"><b>Artist:</b></div>
+	        <div class="col-md-6"><%= @album.artist %></div>
+	    </div>
+	  </li>
+	  <li class="list-group-item">
+	    <div class='row'>
+
+	      <div class="col-md-6"><b>Song duration:</b></div>
+	        <div class="col-md-6"><%= @song.duration%> Minites</div>
+	    </div>
+	  </li>
+	  <li class="list-group-item">
+	    <div class='row'>
+
+	      <div class="col-md-6"><b>Album Cover:</b></div>
+	        <div class="col-md-6"><%= image_tag(@song.album.cover.thumb, :border=>0, :class => 'dock-item') if @song.album && @song.album.cover.present?%></div>
+	    </div>
+	  </li>
+
+  </ul>
+  <div class="form-actions panel-footer" >
+     <span class="pull-right">
+
+        <%= edit_link 'Edit album', edit_artist_album_song_path(@artist,@album,@song) %>
+        <%= delete_link 'Delete song', delete_artist_album_song_path(@artist,@album,@song) %>
+        <%= back_link 'Back to songs', artist_album_songs_path(@artist,@album) %>
+        <%= new_link 'New song', new_artist_album_song_path(@artist,@album) %>
+     </span>
+     <div class="clearfix"></div>
+  </div>
+</div>

@@ -1,0 +1,32 @@
+<div class="row">
+  <div class="col-sm-12 section-new-albums pull-left">
+    <h4>Songs for <%= @album%> (<%= @album.artist%>)</h4>
+    <hr/>
+    <%if @songs.any?%>
+      <div class="col-sm-4 songs-release pull-left">
+        <div class="songs-picture">
+          <%begin%>
+            <%if @album.cover.present?%>
+              <%= image_tag(@album.cover.new_release, :border=>0, :class => 'dock-item',style: "border-radius: 5px;")%>
+            <%else%>
+              <img height="200px;"src="/images/album_image_big.png" alt="album_image_big" style="background-color: black;border-radius: 5px;"/>
+            <%end%>
+          <%rescue%>
+            <img height="200px;"src="/images/album_image_big.png" alt="album_image_big" style="background-color: black;border-radius: 5px;"/>
+          <%end%>
+        </div>
+      </div>
+      <div class="col-sm-8 song-tracks">
+        <%conter = 0%>
+        <%@songs.each do |song|%>
+           <%conter += 1%>
+          <div class="track pull-left"><%= conter %>. <%= song.title%> (<%= song.duration%> Minites)</div>
+        <%end%>
+      </div>
+
+      <div class="clearfix"></div>
+    <%else%>
+      <p>The is no songs for <%= @album%> (<%= @album.artist%>) ,please sign in or sign up to create your own songs.</p>
+    <%end%>
+  </div>
+</div>

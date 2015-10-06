@@ -1,0 +1,36 @@
+<!-- Fixed navbar -->
+<div class="navbar navbar-default navbar-fixed-top navbar-inverse">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="/">
+        <img height="30px;"src="/images/simfy_africa_logo.png" alt="simfy_africa_logo"/>
+      </a>
+    </div>
+    <div class="collapse navbar-collapse">
+      <% if user_signed_in? %>
+        <ul class="nav navbar-nav">
+        </ul>
+        <ul class="nav navbar-nav pull-right" >
+          <li class="dropdown user-profile">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+              <i class="fa fa-user"></i>  <%= current_user.try(:fullname).present? ? current_user.try(:fullname) : current_user.try(:email)%>
+              <%if current_user.admin.present?%>
+                <li class="last"><%= link_to 'Manage All Artists', artists_path() %></li>
+              <%else%>
+                <li class="last"><%= link_to 'Manage My Artists', artists_path() %></li>
+              <%end%>
+              <li><%= link_to raw('<i class="fa fa-sign-out"></i> Sign out'), destroy_user_session_path, method: :delete, class: 'sign-out' %></li>
+              <li><%= link_to raw('<i class="fa fa-user"></i> My profile'), edit_user_registration_path() %></li>
+            </a>
+          </li>
+        </ul>
+      <% end %>
+    </div><!--/.nav-collapse -->
+  </div>
+</div>
+<!--

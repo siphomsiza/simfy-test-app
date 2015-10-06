@@ -1,0 +1,49 @@
+    	<div class="panel panel-default">
+        <div class="panel-heading">
+          <strong class="panel-title">Show album</strong>
+          <div class="clearfix "></div>
+        </div>
+
+
+        <ul class="list-group">
+          <li class="list-group-item">
+            <div class='row'>
+                  <div class="col-md-6"><b>name:</b></div>
+                  <div class="col-md-6"><%= @album.name %></div>
+                </div>
+          </li>
+
+          <li class="list-group-item">
+            <div class='row'>
+                  <div class="col-md-6"><b>Release date:</b></div>
+                  <div class="col-md-6"><%= date_format @album.release_date %></div>
+                </div>
+          </li>
+          <li class="list-group-item">
+            <div class='row'>
+
+              <div class="col-md-6"><b>Artist:</b></div>
+                <div class="col-md-6"><%= @album.artist %></div>
+            </div>
+          </li>
+          <li class="list-group-item">
+            <div class='row'>
+
+              <div class="col-md-6"><b>Cover:</b></div>
+                <div class="col-md-6">
+                	<%= image_tag(@album.cover.thumb, :border=>0, :class => 'dock-item') %>
+                	<br/><%= @album.cover.file.filename if @album.cover.present?%></div>
+            </div>
+          </li>
+          </ul>
+  <div class="form-actions panel-footer" >
+     <span class="pull-right">
+        <%= list_link('view songs', artist_album_songs_path(@artist,@album))%>
+        <%= edit_link 'Edit album', edit_artist_album_path(@artist,@album) %>
+        <%= delete_link 'Delete album', delete_artist_album_path(@artist,@album) %>
+        <%= back_link 'Back to album', artist_albums_path(@artist) %>
+        <%= new_link 'New album', new_artist_album_path(@artist) %>
+     </span>
+     <div class="clearfix"></div>
+  </div>
+</div>

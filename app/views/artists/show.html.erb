@@ -1,0 +1,40 @@
+    	<div class="panel panel-default">
+        <div class="panel-heading">
+          <strong class="panel-title">Show artist</strong>
+          <div class="clearfix "></div>
+        </div>
+
+
+        <ul class="list-group">
+          <li class="list-group-item">
+            <div class='row'>  
+                  <div class="col-md-6"><b>name:</b></div>
+                  <div class="col-md-6"><%= @artist.name %></div>
+                </div>
+          </li>
+
+          <li class="list-group-item">
+            <div class='row'>  
+                  <div class="col-md-6"><b>Created at:</b></div>
+                  <div class="col-md-6"><%= date_format @artist.created_at %></div>
+                </div>
+          </li>
+          <li class="list-group-item">
+            <div class='row'>  
+
+              <div class="col-md-6"><b>Update at:</b></div>
+                <div class="col-md-6"><%= date_format @artist.updated_at %></div>
+            </div>
+          </li>
+          </ul>
+  <div class="form-actions panel-footer" >
+     <span class="pull-right">
+        <%= list_link('view albums', artist_albums_path(@artist))%>
+        <%= edit_link 'Edit artist', edit_artist_path(@artist) %>
+        <%= delete_link 'Delete artist', delete_artist_path(@artist) %>
+        <%= back_link 'Back to artists', artists_path %>
+        <%= new_link 'New artist', new_artist_path %>
+     </span>
+     <div class="clearfix"></div>
+  </div>
+</div>

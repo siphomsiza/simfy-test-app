@@ -1,0 +1,65 @@
+<div class="row">
+  <div class="col-sm-4 section-new-releases pull-left">
+    <h4>New Releases</h4>
+    <hr/>
+    <%if @albums.any?%>
+      <%@albums.each do |album|%>
+        <div class="new-release pull-left">
+          <div class="new-release-picture">
+            <%begin%>
+              <%if album.cover.present?%>
+                <%= image_tag(album.cover.new_release, :border=>0, :class => 'dock-item',style: "border-radius: 5px;")%>
+              <%else%>
+                <img height="200px;"src="/images/album_image_big.png" alt="album_image_big" style="background-color: black;border-radius: 5px;"/>
+              <%end%>
+            <%rescue%>
+              <img height="200px;"src="/images/album_image_big.png" alt="album_image_big" style="background-color: black;border-radius: 5px;"/>
+            <%end%>
+          </div>
+          <div class="artist"><a href="<%= view_artist_albums_home_path(album.artist)%>" title="view albums of <%= album.artist %>"><strong>Artist: </strong><%= album.artist%></a></div>
+          <div class="album_title"><a title="view song of this <%= album%> album" href="<%= view_album_songs_home_path(album)%>"><strong>Album: </strong><%= album%></a></div>
+          <div class="release-date"><strong>Release Date: </strong><%= format_date album.release_date%></div>
+        </div>
+      <%end%>
+      <div class="clearfix"></div>
+      <div class="col-sm-12 paginate-new-release">
+        <div class="pull-right">
+          <%= will_paginate @albums, renderer: BootstrapPagination::Rails %>
+        </div>
+      </div>
+    <%else%>
+      <p>The is no new releases albums for now ,please sign in or sign up to create your own albums.</p>
+    <%end%>
+  </div>
+
+  <div class="col-sm-4 section-releases pull-left">
+    <h4>Featured Artists </h4>
+    <%if @featured_albums.any?%>
+      <%@featured_albums.each do |album|%>
+        <div class="artists-featured">
+          <div class="col-sm-2 artists-featured-picture">
+            <%begin%>
+              <%if album.cover.present?%>
+                <%= image_tag(album.cover.thumb, :border=>0, :class => 'dock-item',style: "border-radius: 5px;")%>
+              <%else%>
+                <img height="50px;"src="/images/album_image_big.png" alt="album_image_big" style="background-color: black;border-radius: 5px;"/>
+              <%end%>
+            <%rescue%>
+              <img height="50px;"src="/images/album_image_big.png" alt="album_image_big" style="background-color: black;border-radius: 5px;"/>
+            <%end%>
+          </div>
+          <div class="col-sm-10 artists-featured-message">
+            <div class="artist"><strong>Artist: </strong><%= album.artist%></div>
+            <div class="album_title"><strong>Album: </strong><%= album%> (<%= album.songs.count%> tracks)</div>
+            <div class="release-date"><strong>Release Date: </strong><%= format_date album.release_date%></div>
+          </div>
+        </div>
+        <div class="clearfix"></div>
+      <%end%>
+    <%else%>
+      <div class="artists-featured"></div>
+      <p>The is no artits and albums for now ,please sign in or sign up to create your own artits and albums.</p>
+    <%end%>
+    <div class="artists-featured"></div>
+  </div>
+</div>

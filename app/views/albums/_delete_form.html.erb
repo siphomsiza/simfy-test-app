@@ -1,0 +1,22 @@
+<%= form_for([@artist, @album], :method => :delete) do |f| %>
+  <div class="panel-body ">
+   <%= render 'shared/form_errors', :f => f %>
+    <div class="alert alert-warning">    
+         <h4>Album: <%= @album%> </h4>
+        <b>Are you sure you want to delete this item?</b> <br/>
+        <b> By deleting this item, all the items belonging to it will be destroyed as well. This action can not be undone! </b>
+    </div>
+  </div>
+  <div class="form-actions panel-footer" >
+     <span class="pull-right">
+      <%= html_delete %>
+      <%= back_link('Back to albums', artist_albums_path(@artist)) %> 
+      <%= new_link 'New album', new_artist_album_path(@artist) %>
+      <%= edit_link 'Edit album', edit_artist_album_path(@artist, @album) %>
+      <%= show_link 'Show album', artist_album_path(@artist,@album) %>
+     </span>
+      <div class="clearfix"></div>      
+  </div>
+<% end %>
+
+
